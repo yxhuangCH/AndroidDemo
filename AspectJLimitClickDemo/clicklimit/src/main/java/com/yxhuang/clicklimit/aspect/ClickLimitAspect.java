@@ -29,22 +29,21 @@ public class ClickLimitAspect {
 
     // View#setOnClickListener
     private static final String POINTCUT_ON_VIEW_CLICK =
-            "execution(* android.view.View.OnClickListener.onClick(..))";
-
+            "execution(* android.view.View.OnClickListener.onClick(..)) && " +
+                    "!within(butterknife.internal.DebouncingOnClickListener)";
+    // butterKnife 点击
+    private static final String POINTCUT_ON_BUTTER_KNIFE_CLICK =
+            "execution(@butterknife.OnClick * *(..))";
 
     @Pointcut(POINTCUT_ON_VIEW_CLICK)
-    public void viewClick() {}
+    public void onViewClick(){}
 
-    @Around(POINTCUT_ON_VIEW_CLICK)
-    public void onViewClick(ProceedingJoinPoint joinPoint) {
-        try {
-            processJoinPoint(joinPoint);
-        } catch (Throwable throwable) {
-            Log.e(TAG, "onViewClick processJoinPoint error " + throwable.getMessage());
-        }
-    }
+    @Pointcut(POINTCUT_ON_BUTTER_KNIFE_CLICK)
+    public void onButterKnifeClick(){}
 
-    private void processJoinPoint(ProceedingJoinPoint joinPoint) throws Throwable {
+
+    @Around("onViewClick() || onButterKnifeClick()")
+    public void processJoinPoint(ProceedingJoinPoint joinPoint) throws Throwable {
         Log.d(TAG, "-----method is click--- ");
         try {
             Signature signature = joinPoint.getSignature();
