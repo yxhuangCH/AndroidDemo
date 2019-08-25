@@ -45,8 +45,9 @@ public class MainActivity extends Activity {
         Toast.makeText(MainActivity.this, "被点击", Toast.LENGTH_SHORT).show();
     }
 
+    @ClickLimit(value = 3000)
     @OnClick(R.id.btn_click)
-    public void onViewClicked() {
+    public void onViewClicked(View view) {
         Log.i(TAG, "-----butterknife method onClick  execution----");
         showToast();
     }
