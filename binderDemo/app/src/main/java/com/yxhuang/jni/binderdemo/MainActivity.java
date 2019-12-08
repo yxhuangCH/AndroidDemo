@@ -28,6 +28,23 @@ public class MainActivity extends Activity {
             Log.i(TAG, "onServiceConnected name " + name.toString());
             mIBookManager = IBookManagerInterface.Stub.asInterface(service);
 
+            if (mIBookManager != null){
+                try {
+                    mIBookManager.addBookListener(new AddBookListener.Stub() {
+                        @Override
+                        public void addBook(Book book) throws RemoteException {
+                            // 主进程、主线程
+                            Log.i(TAG, "addBook callback "  + book.toString() + "\nThread =" +
+                                    Thread.currentThread().getName() + " thread id=" +
+                                    Thread.currentThread().getId());
+
+                        }
+                    });
+                } catch (RemoteException e) {
+                    Log.e(TAG, "addBook error ");
+                }
+            }
+
         }
 
         @Override
@@ -47,7 +64,28 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    mIBookManager.addBook();
+                    Book book = new Book(1234, "Android 源码分析");
+                    mIBookManager.addBook(book);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Button btnGetBook = findViewById(R.id.btn_get_book);
+        btnGetBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    long startTime = System.currentTimeMillis();
+                    Log.i(TAG, "get book  start time " + startTime);
+                    // 调用远端方法会将调用方的线程挂起，等待结果的返回。所以不能调耗时的操作
+                    // 如果想要调，需要在 worker 线程中调
+                    Book book = mIBookManager.getBook(1234);
+                    long endTime = System.currentTimeMillis();
+                    Log.i(TAG, "get book  end time " + endTime);
+                    Log.i(TAG, "get book  time " + (endTime - startTime));
+
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }

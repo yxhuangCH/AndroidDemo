@@ -13,4 +13,13 @@
         android:layout_height="wrap_content"
         android:text="Add book"/>
 
+    <Button
+        android:id="@+id/btn_get_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btn_add_book"
+        android:layout_marginRight="20dp"
+        android:text="GET book"/>
+
+
 </RelativeLayout>
