@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_other_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rlAddBill"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/ll01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_toLeftOf="@+id/miniFab01"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:text="测试中1"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/miniFab01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:src="@mipmap/ic_launcher_round"
+                app:backgroundTint="@color/colorAccent"
+                app:elevation="5dp"
+                app:fabSize="mini"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll01"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_toLeftOf="@+id/miniFab02"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:text="测试中2"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/miniFab02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:src="@mipmap/ic_launcher_round"
+                app:backgroundTint="@color/colorAccent"
+                app:elevation="5dp"
+                app:fabSize="mini"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll02"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_toLeftOf="@+id/miniFab02"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:text="测试中3"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/miniFab03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:src="@mipmap/ic_launcher_round"
+                app:backgroundTint="@color/colorAccent"
+                app:elevation="5dp"
+                app:fabSize="mini"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll03"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_toLeftOf="@+id/miniFab02"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:text="测试中4"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/miniFab04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:src="@mipmap/ic_launcher_round"
+                app:backgroundTint="@color/colorAccent"
+                app:elevation="5dp"
+                app:fabSize="mini"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/ic_launcher"
+        app:backgroundTint="#31bfcf"
+        app:elevation="5dp"
+        app:fabSize="normal"
+        app:rippleColor="#e7d161" />
+</RelativeLayout>

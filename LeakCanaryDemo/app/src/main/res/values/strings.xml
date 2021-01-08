@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">LeakCanaryDemo</string>
+
+    <string name="helper_text">Press this button or rotate the screen to create leaks. Pressing back or creating 5 leaks will trigger a heap dump.</string>
+    <string name="recreate_activity_button_text">Recreate &amp; Leak Activity</string>
+</resources>
