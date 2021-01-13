@@ -31,7 +31,7 @@ public class AnimActivity extends Activity {
 
     private void initView(){
 
-        int textColor = getResources().getColor(R.color.colorAccent)
+        int textColor = getResources().getColor(R.color.colorAccent);
 
 
         RelativeLayout contentLayout = findViewById(R.id.llAnim);
@@ -42,12 +42,8 @@ public class AnimActivity extends Activity {
         tvSpeedText.setTextColor(textColor);
 
         RelativeLayout.LayoutParams speedLayoutParams = new RelativeLayout.LayoutParams(60, 60);
-        speedLayoutParams.addRule();
 
         contentLayout.addView(tvSpeedText, speedLayoutParams);
-
-
-
 
 
     }

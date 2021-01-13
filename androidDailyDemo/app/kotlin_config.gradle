@@ -1,0 +1,47 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+//    packagingOptions {
+//        exclude 'META-INF/proguard/coroutines.pro'
+//    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
+    api "androidx.lifecycle:lifecycle-runtime:$kotlin_lifecycle"
+//    implementation "androidx.lifecycle:lifecycle-compiler:$kotlin_lifecycle"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$kotlin_lifecycle"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$kotlin_lifecycle"
+    api "androidx.lifecycle:lifecycle-extensions:${kotlin_lifecycle}"
+    api "androidx.activity:activity-ktx:${kotlin_activity}"
+
+}

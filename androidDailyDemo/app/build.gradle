@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply from: "kotlin_config.gradle"
 
 android {
     compileSdkVersion 30
@@ -6,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.yxhuang.androiddailydemo"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
