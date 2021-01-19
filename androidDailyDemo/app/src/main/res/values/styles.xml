@@ -7,4 +7,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <declare-styleable name="WordCloudViewTextStyle">
+        <attr name="word_bg_color" format="color" />
+        <attr name="word_bg_radius" format="dimension" />
+        <attr name="word_horizontal_padding" format="dimension" />
+    </declare-styleable>
+
+
 </resources>
