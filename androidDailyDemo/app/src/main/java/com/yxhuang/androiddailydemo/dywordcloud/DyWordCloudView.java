@@ -155,7 +155,7 @@ public class DyWordCloudView extends View {
         int white33Color = Color.parseColor("#59FFFFFF");
 
         // 第三列
-        mGridItemList.add(new WordGridItem(mGridRect[1][2], whiteColor, 60, 20,1, 2)); // 中间
+        mGridItemList.add(new WordGridItem(mGridRect[1][2], whiteColor, 60, 20, 1, 2)); // 中间
         mGridItemList.add(new WordGridItem(mGridRect[0][2], whiteColor, 50, 16, 0, 2));
         mGridItemList.add(new WordGridItem(mGridRect[2][2], whiteColor, 40, 10, 2, 2));
 
@@ -233,22 +233,22 @@ public class DyWordCloudView extends View {
                 return;
             }
 
-            float dy  = Math.abs(paint.ascent() + paint.descent()) / 2;
+            float dy = Math.abs(paint.ascent() + paint.descent()) / 2;
 
             // 绘制背景
             RectF bgRect = new RectF();
             bgRect.left = x - width / 2;
             bgRect.right = x + width / 2;
-            bgRect.top = y - dy - height / 2;
-            bgRect.bottom = y - dy  + height / 2;
+            bgRect.top = y - height / 2;
+            bgRect.bottom = y + height / 2;
 
             canvas.drawRoundRect(bgRect, 40, 40, bgPaint);
             canvas.save();
 
-            canvas.drawText(text, x, y, paint);
+            canvas.drawText(text, x, y + dy, paint);
             canvas.restore();
 
-            resetCurrentItemRect(gridItem, x, y);
+            resetCurrentItemRect(gridItem, x, y + dy);
         }
 
         // 是否超出水平

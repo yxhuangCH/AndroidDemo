@@ -20,9 +20,9 @@ public class WordCloudActivity extends AppCompatActivity {
     private String[] WORDS = {
             "A1Maya", "B2Yashar", "C3Benjamin",
             "D4Maithe Tyrion", "E5Ben", "F6Wouter",
-            "G7Shyvana", "H8Daenery", "I9Jon",
+            "G7Shyvana", "H8D", "I9Jon",
             "J10TyrionJoin TESTD", "K11Hodor", "L12Hodor",
-            "M12Hodor", "N13Hodor", "R14Hodor"};
+            "M12Hodor", "N13r", "R14Hodor"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
