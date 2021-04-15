@@ -1,6 +1,7 @@
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlinx-serialization'
 
 android {
 
@@ -43,5 +44,9 @@ dependencies {
     api "androidx.lifecycle:lifecycle-livedata-ktx:$kotlin_lifecycle"
     api "androidx.lifecycle:lifecycle-extensions:${kotlin_lifecycle}"
     api "androidx.activity:activity-ktx:${kotlin_activity}"
+
+    // Kotlinx Serialization
+//    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:1.0-M1-1.4.0-rc"
+//    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
 }

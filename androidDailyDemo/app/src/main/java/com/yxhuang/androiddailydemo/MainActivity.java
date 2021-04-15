@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.yxhuang.androiddailydemo.poll.IPollMonitor;
 import com.yxhuang.androiddailydemo.poll.PollMonitorManager;
+import com.yxhuang.androiddailydemo.postdelay.PostDelay;
 
 public class MainActivity extends AppCompatActivity implements IPollMonitor {
 
@@ -18,14 +19,18 @@ public class MainActivity extends AppCompatActivity implements IPollMonitor {
 
     private PollMonitorManager mPollMonitorManager;
 
+    private PostDelay mPostDelay;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mPollMonitorManager = new PollMonitorManager(this);
-        mPollMonitorManager.start();
+        getWindow().getDecorView();
+
+//        mPollMonitorManager = new PollMonitorManager(this);
+//        mPollMonitorManager.start();
 
         findViewById(R.id.tv_hello_word).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,18 +39,43 @@ public class MainActivity extends AppCompatActivity implements IPollMonitor {
                 startActivity(intent);
             }
         });
+
+
+        findViewById(R.id.btn_post_delay).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (mPostDelay == null){
+                            mPostDelay = new PostDelay(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.i(TAG, "PostDelay ------");
+                                    mPostDelay.startPost();
+                                }
+                            }, 5);
+                            mPostDelay.startPost();
+                        }
+
+                    }
+                }).start();
+            }
+        });
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mPollMonitorManager.resume();
+//        mPollMonitorManager.resume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mPollMonitorManager.pause();
+//        mPollMonitorManager.pause();
     }
 
     @Override
