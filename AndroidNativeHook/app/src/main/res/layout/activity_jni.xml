@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="test"/>
 
     <Button
         android:id="@+id/btn_write"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="write"/>
+        android:layout_marginTop="10dp"
+        android:text="write" />
 
     <Button
         android:id="@+id/btn_simple_hook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Simple hook"/>
+        android:layout_marginTop="10dp"
+        android:text="Simple hook" />
 
     <Button
         android:id="@+id/btn_hook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="native hook"/>
+        android:layout_marginTop="10dp"
+        android:text="native hook" />
 
+    <Button
+        android:id="@+id/btn_xhook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="native xhook" />
 
 </LinearLayout>

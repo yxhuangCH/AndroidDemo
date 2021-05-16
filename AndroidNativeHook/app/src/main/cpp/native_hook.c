@@ -74,7 +74,7 @@ int hook_fwrite(const char *soPath, const char *hookFuncName) {
         LOG_D("hook_fwrite is not so file return 0");
         return 0;
     }
-    // 程序头表地址 = base_addr + 程序头表在Elf文件中的偏移
+    // 程序头表地址 program header = base_addr + 程序头表在Elf文件中的偏移
     Elf32_Phdr *phdr_table = (Elf32_Phdr *) (base_addr + header->e_phoff);
     if (phdr_table == 0) {
         LOG_D("hook_fwrite phdr_table address : 0");

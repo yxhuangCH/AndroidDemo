@@ -21,11 +21,12 @@ android {
                 cmake {
                     cppFlags ""
                     arguments '-DANDROID_STL=c++_static'
+                    abiFilters "armeabi-v7a", "arm64-v8a"
                 }
             } else {
                 ndk {
                     ldLibs "log-lib"
-                    abiFilters "armeabi-v7a"//, "arm64-v8a"
+                    abiFilters "armeabi-v7a", "arm64-v8a"
                 }
             }
         }
@@ -67,6 +68,9 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation project(':xhook')
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

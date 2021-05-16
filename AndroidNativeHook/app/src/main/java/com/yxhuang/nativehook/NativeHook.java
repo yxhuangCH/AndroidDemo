@@ -11,6 +11,7 @@ public class NativeHook {
         System.loadLibrary("native-write");
         System.loadLibrary("hook-simple");
         System.loadLibrary("native-hook");
+        System.loadLibrary("xhook-write");
     }
 
     /**
@@ -27,4 +28,8 @@ public class NativeHook {
     public native void hookSimple(String soName);
 
     public native void hookWrite(String soPath, String hookFunc);
+
+    public native void xhookInit();
+
+    public native void xhookWrite(String hookContent);
 }

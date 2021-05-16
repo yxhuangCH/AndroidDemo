@@ -26,12 +26,6 @@ public class JNIActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jni);
 
-        Button button = findViewById(R.id.btn_test);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
 
         findViewById(R.id.btn_write).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +48,12 @@ public class JNIActivity extends Activity {
                 PathClassLoader pathClassLoader = (PathClassLoader) getClassLoader();
                 String nativeWritePath = pathClassLoader.findLibrary("native-write");
                 mNativeHook.hookWrite(nativeWritePath, "fwrite");
+            }
+        });
+        findViewById(R.id.btn_xhook).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mNativeHook.xhookWrite("xhook");
             }
         });
     }
