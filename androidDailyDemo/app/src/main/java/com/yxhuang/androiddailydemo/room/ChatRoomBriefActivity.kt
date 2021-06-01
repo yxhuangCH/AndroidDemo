@@ -2,6 +2,7 @@ package com.yxhuang.androiddailydemo.room
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -13,11 +14,16 @@ import com.yxhuang.androiddailydemo.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import androidx.lifecycle.observe
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.OffsetEdgeTreatment
+import com.google.android.material.shape.ShapeAppearanceModel
 
 /**
  * Created by yxhuang
  * Date: 2021/2/25
  * Description:
+ *  Room 数据库使用例子
+ *
  */
 class ChatRoomBriefActivity : AppCompatActivity() {
 
