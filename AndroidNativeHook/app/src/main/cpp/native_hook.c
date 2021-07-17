@@ -29,6 +29,7 @@ size_t new_fwrite(const void *buf, size_t size, size_t count, FILE *fp) {
     // 插入文本
     const char *text = "hello native ";
     LOG_D("new_fwrite hook fwrite success insert text: %s", text);
+    // 直接调用原来的目标函数
     old_fwrite(text, strlen(text), 1, fp);
     return old_fwrite(buf, size, count, fp);
 }
@@ -63,10 +64,9 @@ int hook_fwrite(const char *soPath, const char *hookFuncName) {
     // 1. 获取目标进程中模块的加载地址
     void *base_addr = get_module_base(getpid(), soPath);
     LOG_D("hook_fwrite base address = 0x%08X", base_addr);
-    // 2.保存被 hook 的目标函数的原始调用地址
     old_fwrite = fwrite;
     LOG_D("origin fopen = 0x%08X", old_fwrite);
-    // 3.计算 header table 的实际地址
+    // 2.计算 header table 的实际地址
     Elf32_Ehdr *header = (Elf32_Ehdr *) (base_addr);
     LOG_D("hook_fwrite e_ident = %d", header->e_ident[0]);
     // 通过 ELF 头文件的 e_ident 的 magic 对比，判断是不是 ELF
@@ -113,7 +113,7 @@ int hook_fwrite(const char *soPath, const char *hookFuncName) {
     unsigned long ptlRelSz = 0;
     unsigned long symTabOff = 0;
 
-    // 多少个 .dynamic 段  (理解这段代码)
+    // 3. 多个 .dynamic 段  (理解这段代码)
     // 遍历 动态段
     int dynCount = p_memsz / sizeof(Elf32_Dyn);
     for (int i = 0; i < dynCount; i++) {
@@ -155,7 +155,7 @@ int hook_fwrite(const char *soPath, const char *hookFuncName) {
     LOG_D("jmpRelOff : %x", jmpRelOff);
     LOG_D("strTabOff : %x", strTabOff);
     LOG_D("symTabOff : %x", symTabOff);
-    // 遍历 got 表
+    // 4.遍历 got 表
     for (int i = 0; i < ptlRelSz; i++) {
         //ELF32_R_SYM 右移八位，查找改符号（rel_table[i].r_info）在 rel_table 符号表中下标
         uint16_t ndx = ELF32_R_SYM(rel_table[i].r_info);
@@ -172,12 +172,12 @@ int hook_fwrite(const char *soPath, const char *hookFuncName) {
             LOG_D("hook_fwrite old_function=0x%08X new_function=0x%08X", mem_page_start,
                   new_fwrite);
             LOG_D("hook_fwrite mem_page_start=0x%08X page_size=%d", mem_page_start, page_size);
-            // 修改内存属性为可写
+            // 5. 修改内存属性为可写
             mprotect((uint32_t) PAGE_START(mem_page_start), page_size,
                      PROT_READ | PROT_WRITE | PROT_EXEC);
-            // 替换
+            // 6. 替换
             *(unsigned int *) (base_addr + rel_table[i].r_offset) = new_fwrite;
-            // 清除指令缓存
+            // 7. 清除指令缓存
             __builtin___clear_cache((void *) PAGE_START(mem_page_start),
                                     (void *) PAGE_END(mem_page_start));
         }

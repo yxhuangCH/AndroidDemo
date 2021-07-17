@@ -1,14 +1,8 @@
-package com.dianyun.chikii
+package com.yxhuang.firebase
 
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.FirebaseApp
-import com.google.firebase.FirebaseOptions
-import com.google.firebase.crashlytics.CrashlyticsRegistrar
-import com.google.firebase.crashlytics.internal.analytics.CrashlyticsOriginAnalyticsEventLogger
-import com.google.firebase.crashlytics.internal.common.CrashlyticsCore
-import com.google.firebase.crashlytics.internal.model.CrashlyticsReport
 
 class FirebaseActivity : AppCompatActivity() {
     companion object{

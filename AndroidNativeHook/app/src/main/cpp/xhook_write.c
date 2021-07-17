@@ -10,7 +10,9 @@
 
 void (*writeText)(const char *path, const char *text) = NULL;
 
-
+/**
+ * 替换的函数
+ */
 void *xhook_write(const char *path, const char *text){
     // 插入文本
     const char *textHook = "hello native ";

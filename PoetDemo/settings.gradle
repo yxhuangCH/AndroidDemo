@@ -1,0 +1,4 @@
+include ':kotlinpoet'
+include ':javapoet'
+include ':app'
+rootProject.name = "PoetDemo"
