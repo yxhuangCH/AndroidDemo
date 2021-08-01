@@ -16,3 +16,8 @@ PoetDemo/.idea/*
 javapoetdemo/.idea/*
 *.idea/*
 .idea/
+PoetDemo/.idea/compiler.xml
+PoetDemo/.idea/gradle.xml
+PoetDemo/.idea/jarRepositories.xml
+javapoetdemo/.idea/caches/build_file_checksums.ser
+javapoetdemo/.idea/compiler.xml
