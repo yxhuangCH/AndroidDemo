@@ -3,10 +3,8 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation (project(":annotation"))
 
     implementation 'com.squareup:javapoet:1.13.0'
 
 }
-
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"

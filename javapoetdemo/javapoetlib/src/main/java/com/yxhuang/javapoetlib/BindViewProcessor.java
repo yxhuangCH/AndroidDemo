@@ -21,6 +21,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
+import javax.tools.Diagnostic;
 
 /**
  * Created by yxhuang
@@ -65,7 +66,7 @@ public class BindViewProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        System.out.print("MyProcessor process");
+        mMessager.printMessage(Diagnostic.Kind.NOTE,"MyProcessor process");
 
         // 得到所有的注解ElementKind
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(BindView.class);
@@ -83,8 +84,10 @@ public class BindViewProcessor extends AbstractProcessor {
             proxy.putElement(id, variableElement);
         }
 
+
         // 创建 java 文件
         for (String key : mClassCreatorFactoryMap.keySet()){
+            mMessager.printMessage(Diagnostic.Kind.NOTE,"创建 java 文件");
             ClassCreatorFactory proxyInfo = mClassCreatorFactoryMap.get(key);
             try {
                 JavaFile javaFile = JavaFile.builder(proxyInfo.getPackageName(),

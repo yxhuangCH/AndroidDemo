@@ -2,7 +2,10 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="annotation" target="1.7" />
       <module name="javapoet" target="1.7" />
+      <module name="kspcomplier" target="1.7" />
+      <module name="kspconsumer" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

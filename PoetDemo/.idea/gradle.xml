@@ -11,9 +11,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/annotation" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/javapoet" />
             <option value="$PROJECT_DIR$/kotlinpoet" />
+            <option value="$PROJECT_DIR$/kspcomplier" />
+            <option value="$PROJECT_DIR$/kspconsumer" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
