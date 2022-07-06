@@ -1,0 +1,81 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.6" //指定jacoco的版本
+//    reportsDir = file("$buildDir/JacocoReport") //指定jacoco生成报告的文件夹
+}
+
+// https://github.com/gradle/gradle/issues/5184
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+//android {
+//    buildTypes {
+//        debug {
+//            //打开覆盖率统计开关
+//            testCoverageEnabled = true
+//        }
+//    }
+//}
+
+def mainSrc = "${project.projectDir}/src/main/java"
+def fileFilter = [
+        '**/*Test*.*',
+        '**/AutoValue_*.*',
+        '**/*JavascriptBridge.class',
+        '**/R.class',
+        '**/R$*.class',
+        '**/Manifest*.*',
+        'android/**/*.*',
+        '**/BuildConfig.*',
+        '**/*$ViewBinder*.*',
+        '**/Lambda.class',
+        '**/Lambda$*.class',
+        '**/*Lambda.class',
+        '**/*Lambda*.class',
+        '**/*$ViewInjector*.*',
+        '**/*$ViewInjector*.class',
+        '**/*$InjectAdapter.class',
+        '**/*$ModuleAdapter.class',
+        // Dagger2  生成的类
+        '**/*_MembersInjector.class',
+        '*/*_MembersInjector*.*',
+        '**/*_*Factory*.*',
+        '*/*Component*.*',
+        '**/*Module*.*',
+        // Hilt 生成类
+        '**/*_HiltComponents_*.*',
+        '**/*_HiltComponents*.*',
+        '**/Hilt_*.*',
+        // Room 生成类
+        '**/*_Impl*.*'
+]
+// com/yxhuang/androidtest/DaggerShoppingApplication_HiltComponents_ApplicationC.java
+def javaDebugTree = fileTree(dir: "${buildDir}/intermediates/javac/debug/classes", excludes: fileFilter)
+//def javaDebugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
+
+//依赖于testDebugUnitTest任务
+task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+    group = "Reporting" //指定task的分组
+    reports {
+        xml.enabled = true //开启xml报告
+        html.enabled = true //开启html报告
+    }
+
+
+    sourceDirectories.from = files([mainSrc])
+    classDirectories.from = files([javaDebugTree, kotlinDebugTree])
+    executionData.from = fileTree(dir: "$buildDir", includes:[ //指定报告数据的路径
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/debugAndroidTest/connected/*coverage.ec"
+    ])
+
+    doLast {
+        println "Wrote HTML coverage report to ${reports.html.destination}/index.html"
+        println "Wrote XML coverage report to ${reports.html.destination}"
+    }
+
+}
