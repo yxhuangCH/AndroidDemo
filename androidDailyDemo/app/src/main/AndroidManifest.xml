@@ -11,16 +11,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".handler.HandlerActivity"
-            android:exported="true"
-            android:label="@string/title_activity_handler">
+            android:name=".accessibility.AccessibilityActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".handler.HandlerActivity"
+            android:exported="true"
+            android:label="@string/title_activity_handler">
 
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
         <activity
             android:name="com.yxhuang.kt.ContineActivity"
             android:label="@string/title_activity_contine">

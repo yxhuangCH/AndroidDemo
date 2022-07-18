@@ -74,6 +74,9 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
 
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+
     // 查看数据库
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
@@ -93,4 +96,12 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutines"
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
+
+    // viewModel coroutine
+    //For runBlockingTest, CoroutineDispatcher etc.
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
+//    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2'
+//For InstantTaskExecutorRule
+    testImplementation  'androidx.arch.core:core-testing:2.1.0'
+
 }

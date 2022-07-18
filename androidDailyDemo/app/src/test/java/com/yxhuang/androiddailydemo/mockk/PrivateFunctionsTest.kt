@@ -38,6 +38,16 @@ class PrivateFunctionsTest {
         fun y() = x()
 
         private fun x() = "abc"
+
+        fun a(genericsClass: GenericsClass) {
+            z(genericsClass) {
+                println(" it: $it")
+            }
+        }
+
+        private fun z(genericsClass: GenericsClass, callback: (Boolean) -> Unit) {
+
+        }
     }
 
     @Test
@@ -54,6 +64,21 @@ class PrivateFunctionsTest {
         }
     }
 
+    @Test
+    fun testPrivateMethodWithHigherOrderFunctionArg() {
+        val abc = spyk(Abc(), recordPrivateCalls = true)
+        val callback: (Boolean) -> Unit = mockk(relaxed = true)
+        val genericsClass = mockk<GenericsClass>()
+
+        justRun { abc invoke "z" withArguments listOf(genericsClass, callback)}
+
+        abc.a(genericsClass)
+
+        verifySequence {
+            abc.a(genericsClass)
+            abc["z"](any<GenericsClass>(), any<(Boolean) -> Unit>())
+        }
+    }
 
     @Test
     fun spyNoRecordingPrivateMethod() {
@@ -136,7 +161,7 @@ class PrivateFunctionsTest {
     }
 
     @Test
-    fun testPrivateMethodThatReturnsNoting(){
+    fun testPrivateMethodThatReturnsNoting() {
         val myClass = spyk<PrivateNoReturnClass>(recordPrivateCalls = true)
         every { myClass invokeNoArgs "myPrivateMethod" } returns Unit
 
@@ -148,7 +173,7 @@ class PrivateFunctionsTest {
     }
 
     @Test
-    fun justRunsWithPrivateMethod(){
+    fun justRunsWithPrivateMethod() {
         val mock = spyk<PrivateNoReturnClass>(recordPrivateCalls = false)
         justRun { mock invokeNoArgs "myPrivateMethod" }
 

@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.yxhuang.androiddailydemo.handler.HandlerActivity;
 import com.yxhuang.androiddailydemo.poll.IPollMonitor;
 import com.yxhuang.androiddailydemo.poll.PollMonitorManager;
@@ -126,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements IPollMonitor {
         super.onResume();
 //        mPollMonitorManager.resume();
 //        changeByte();
+        testGson();
     }
 
     @Override
@@ -175,5 +178,18 @@ public class MainActivity extends AppCompatActivity implements IPollMonitor {
         Log.i(TAG, "urlIndex :" + currentIndex);
         String url = mUrlList.get(urlIndex);
         Log.i(TAG, "url :" + url);
+    }
+
+    private void testGson(){
+
+        String text = "{\"id\":\"12\", \"name\":\"test\", \"age\":\"10\"}";
+
+        try {
+            User user = new Gson().fromJson(text, User.class);
+            Log.i(TAG, "user :" + user.toString());
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        }
+
     }
 }
